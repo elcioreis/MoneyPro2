@@ -1,2 +1,4 @@
-# MoneyPro2_API
-API para sistema de gestão financeira
+# MoneyPro2
+
+Sistema de gestão financeira criado para estudo de DotNET, C# e SQL Server
+
