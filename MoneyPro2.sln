@@ -3,17 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyPro2.API", "MoneyPro2.API\MoneyPro2.API.csproj", "{FAF395D5-60CA-4273-91F4-4805A5104215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyPro2.API", "MoneyPro2.API\MoneyPro2.API.csproj", "{FAF395D5-60CA-4273-91F4-4805A5104215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyPro2.Domain", "MoneyPro2.Domain\MoneyPro2.Domain.csproj", "{4BDF106E-09AD-43E4-A137-18BDB9F54DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyPro2.Domain", "MoneyPro2.Domain\MoneyPro2.Domain.csproj", "{4BDF106E-09AD-43E4-A137-18BDB9F54DC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyPro2.Shared", "MoneyPro2.Shared\MoneyPro2.Shared.csproj", "{89889F54-0F28-47BF-8C67-968B246F253E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyPro2.Test", "MoneyPro2.Test\MoneyPro2.Test.csproj", "{A2BD5466-B5DF-429A-820A-A5CFDB28DE0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{15550370-F038-4389-A6E5-ACDC4912D7B8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		test.ps1 = test.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FAF395D5-60CA-4273-91F4-4805A5104215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -24,5 +33,19 @@ Global
 		{4BDF106E-09AD-43E4-A137-18BDB9F54DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BDF106E-09AD-43E4-A137-18BDB9F54DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BDF106E-09AD-43E4-A137-18BDB9F54DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89889F54-0F28-47BF-8C67-968B246F253E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89889F54-0F28-47BF-8C67-968B246F253E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89889F54-0F28-47BF-8C67-968B246F253E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89889F54-0F28-47BF-8C67-968B246F253E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BD5466-B5DF-429A-820A-A5CFDB28DE0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BD5466-B5DF-429A-820A-A5CFDB28DE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BD5466-B5DF-429A-820A-A5CFDB28DE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BD5466-B5DF-429A-820A-A5CFDB28DE0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5703815-22F3-4262-8E65-80DC1D68E7BB}
 	EndGlobalSection
 EndGlobal
