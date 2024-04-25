@@ -59,7 +59,7 @@ public partial class User : Notifiable<Notification>
                 )
                 .IsTrue(
                 _strongPassword.IsMatch(Senha ?? ""),
-                "Senha", "A senha deve ter minúsculas, maiúsculas, números e caracteres especiais"
+                "Senha", "A senha deve ter minúsculas, maiúsculas, números, caracteres especiais e ao menos 08 caracteres"
                 )
         );
         AddNotifications(Email?.Notifications);

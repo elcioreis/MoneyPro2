@@ -18,9 +18,11 @@ public class MoneyPro2DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Ignorar ValueObjects
-        modelBuilder.Ignore<Notification>();
         modelBuilder.Ignore<Email>();
+        modelBuilder.Ignore<ChangePassword>();
         modelBuilder.Ignore<CPF>();
+        modelBuilder.Ignore<Login>();
+        modelBuilder.Ignore<Notification>();
 
         // UserLogin - User
         modelBuilder
