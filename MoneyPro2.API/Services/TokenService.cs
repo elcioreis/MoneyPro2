@@ -9,11 +9,12 @@ namespace MoneyPro2.API.Services;
 
 public class TokenService
 {
-    public string GenerateToken(User user)
+    //public string GenerateToken(User user)
+    public string GenerateToken(Login login)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
-        var claims = user.GetClaims();
+        var claims = login.GetClaims();
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),

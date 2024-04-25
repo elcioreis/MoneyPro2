@@ -5,27 +5,27 @@ namespace MoneyPro2.API.Extensions;
 
 public static class RoleClaimsExtension
 {
-    public static IEnumerable<Claim> GetClaims(this User user)
+    public static IEnumerable<Claim> GetClaims(this Login login)
     {
         var result = new List<Claim>
         {
-            new Claim("UserId", user.UserId.ToString()),
-            new Claim(ClaimTypes.Name, user.Nome ?? ""),
-            new Claim(ClaimTypes.Email, user.Email?.ToString() ?? "")
+            new Claim("UserId", login.UserId.ToString()),
+            new Claim(ClaimTypes.Name, login.Nome ?? ""),
+            new Claim(ClaimTypes.Email, login.Email?.ToString() ?? "")
         };
         return result;
     }
 
-    public static int GetUserId(this ClaimsPrincipal user)
+    public static int GetUserId(this ClaimsPrincipal login)
     {
         //const string _primarysid = "primarysid";
 
         const string _userid = "userid";
-        if (user != null && user.HasClaim(c => c.Type.ToLower().EndsWith(_userid)))
+        if (login != null && login.HasClaim(c => c.Type.ToLower().EndsWith(_userid)))
         {
 #pragma warning disable CS8602 // Desreferência de uma referência possivelmente nula.
             string strID =
-                user.Claims
+                login.Claims
                     .FirstOrDefault(x => x.Type.ToLowerInvariant().EndsWith(_userid))
                     .Value ?? string.Empty;
 #pragma warning restore CS8602 // Desreferência de uma referência possivelmente nula.
@@ -40,13 +40,13 @@ public static class RoleClaimsExtension
         return -1;
     }
 
-    public static string GetUserEmail(this ClaimsPrincipal user)
+    public static string GetUserEmail(this ClaimsPrincipal login)
     {
         const string _emailaddress = "emailaddress";
-        if (user != null && user.HasClaim(c => c.Type.ToLower().EndsWith(_emailaddress)))
+        if (login != null && login.HasClaim(c => c.Type.ToLower().EndsWith(_emailaddress)))
         {
 #pragma warning disable CS8602 // Desreferência de uma referência possivelmente nula.
-            return user.Claims
+            return login.Claims
                     .FirstOrDefault(x => x.Type.ToLowerInvariant().EndsWith(_emailaddress))
                     .Value ?? string.Empty;
 #pragma warning restore CS8602 // Desreferência de uma referência possivelmente nula.

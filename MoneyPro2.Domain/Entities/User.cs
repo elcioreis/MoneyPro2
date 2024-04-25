@@ -50,7 +50,6 @@ public partial class User : Notifiable<Notification>
                     "O username deve ter entre 1 e 20 caracteres"
                 )
                 .IsTrue(
-                    //!string.IsNullOrEmpty(Username) &&
                     _allowedChars.IsMatch(Username ?? ""),
                     "Username",
                     "O username só pode ter letras, números, arroba ou ponto"
