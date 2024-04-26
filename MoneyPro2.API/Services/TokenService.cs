@@ -9,7 +9,6 @@ namespace MoneyPro2.API.Services;
 
 public class TokenService
 {
-    //public string GenerateToken(User user)
     public string GenerateToken(Login login)
     {
         var tokenHandler = new JwtSecurityTokenHandler();

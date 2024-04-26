@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "46a824dc-2fe2-4daa-a83e-a5444e77e3f8",
+		"_postman_id": "c31bdc8d-f7e6-4831-9ee4-913970c73f3a",
 		"name": "MoneyPro2.API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15533135",
-		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-46a824dc-2fe2-4daa-a83e-a5444e77e3f8?action=share&source=collection_link&creator=15533135"
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-c31bdc8d-f7e6-4831-9ee4-913970c73f3a?action=share&source=collection_link&creator=15533135"
 	},
 	"item": [
 		{
@@ -25,15 +25,50 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7121/v1/users",
-							"protocol": "https",
+							"raw": "{{localBaseUrl}}/v1/users",
 							"host": [
-								"localhost"
+								"{{localBaseUrl}}"
 							],
-							"port": "7121",
 							"path": [
 								"v1",
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/changepassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaantiga\":\"XYZxyz123!@#\",\r\n    \"senhanova\": \"ABCabc123!@#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBaseUrl}}/v1/changepassword",
+							"host": [
+								"{{localBaseUrl}}"
+							],
+							"path": [
+								"v1",
+								"changepassword"
 							]
 						}
 					},
@@ -56,12 +91,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7121/v1/login",
-					"protocol": "https",
+					"raw": "{{localBaseUrl}}/v1/login",
 					"host": [
-						"localhost"
+						"{{localBaseUrl}}"
 					],
-					"port": "7121",
 					"path": [
 						"v1",
 						"login"
@@ -69,6 +102,28 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

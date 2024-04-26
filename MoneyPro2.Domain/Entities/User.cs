@@ -38,6 +38,11 @@ public partial class User : Notifiable<Notification>
     public string Criptografada { get; private set; } = string.Empty;
     public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
 
+    public void SetCriptografada(string senhaMD5)
+    {
+        this.Criptografada = senhaMD5;
+    }
+
     private void UserContracts()
     {
         Clear();

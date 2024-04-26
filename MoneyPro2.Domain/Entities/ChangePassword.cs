@@ -6,17 +6,15 @@ namespace MoneyPro2.Domain.Entities;
 public partial class ChangePassword : Notifiable<Notification>
 {
     private readonly Regex _strongPassword = StrongPassword();
-    public ChangePassword(string email, string antiga, string nova)
+    public ChangePassword(string velha, string nova)
     {
-        Username = email;
-        SenhaAntiga = antiga;
+        SenhaVelha = velha;
         SenhaNova = nova;
 
         UserContracts();
     }
 
-    public string Username { get; private set; } = new("");
-    public string SenhaAntiga { get; private set; } = string.Empty;
+    public string SenhaVelha { get; private set; } = string.Empty;
     public string SenhaNova { get; private set; } = string.Empty;
 
     private void UserContracts()
@@ -25,6 +23,8 @@ public partial class ChangePassword : Notifiable<Notification>
         AddNotifications(
             new Contract<Notification>()
                 .Requires()
+                .IsTrue(SenhaVelha != SenhaNova,
+                    "Nova Senha", "A nova senha não pode ser igual à senha anterior")
                 .IsTrue(
                 _strongPassword.IsMatch(SenhaNova ?? ""),
                 "Nova Senha", "A nova senha deve ter minúsculas, maiúsculas, números, caracteres especiais e ao menos 08 caracteres"
