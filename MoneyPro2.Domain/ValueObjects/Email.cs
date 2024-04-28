@@ -21,6 +21,11 @@ public class Email : ValueObject
 
     public string Address { get; private set; } = string.Empty;
 
+    public void SetAddress(string address)
+    {
+        Address = address;
+    }
+
     public override string ToString()
     {
         return this.Address;

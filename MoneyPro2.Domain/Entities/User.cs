@@ -43,6 +43,16 @@ public partial class User : Notifiable<Notification>
         this.Criptografada = senhaMD5;
     }
 
+    public void SetNome(string nome)
+    {
+        Nome = nome;
+    }
+
+    public void SetVerificado(bool verificado)
+    {
+        EmailVerificado = verificado;
+    }
+
     private void UserContracts()
     {
         Clear();

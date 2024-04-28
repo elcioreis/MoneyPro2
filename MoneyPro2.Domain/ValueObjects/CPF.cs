@@ -20,5 +20,10 @@ public class CPF : ValueObject
             );
     }
 
+    public void SetNumero(string numero)
+    {
+        Numero = numero;
+    }
+
     public string Numero { get; private set; } = string.Empty;
 }

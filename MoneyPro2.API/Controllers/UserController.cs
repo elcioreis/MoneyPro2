@@ -16,7 +16,7 @@ public class UserController : ControllerBase
 {
     [HttpPost("v1/users/")]
     public async Task<IActionResult> NewUserAsync(
-        [FromBody] RegisterViewModel model,
+        [FromBody] RegisterUserViewModel model,
         [FromServices] MoneyPro2DataContext context
     )
     {
@@ -40,8 +40,10 @@ public class UserController : ControllerBase
                     new
                     {
                         userid = user.UserId,
-                        user.Username,
-                        email = user.Email?.Address
+                        username = user.Username,
+                        nome = user.Nome,
+                        email = user.Email?.Address,
+                        cpf = user.CPF?.Numero
                     }
                     )
                 );
@@ -68,6 +70,76 @@ public class UserController : ControllerBase
         catch
         {
             return StatusCode(500, new ResultViewModel<string>("01x05 - Falha interna no servidor"));
+        }
+    }
+
+    [Authorize]
+    [HttpPut("v1/users/")]
+    public async Task<IActionResult> UpdateUserAsync(
+        [FromBody] UpdateUserViewModel model,
+        [FromServices] MoneyPro2DataContext context
+    )
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        var userid = User.GetUserId();
+
+        var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == userid);
+
+        if (user == null)
+        {
+            return StatusCode(500, new ResultViewModel<string>("01x06 - Usuário não encontrado"));
+        }
+
+        user.SetNome(model.Nome);
+        user.CPF.SetNumero(model.CPF);
+
+        if (user.Email.ToString() != model.Email)
+        {
+            user.SetVerificado(false);
+            user.Email.SetAddress(model.Email);
+        }
+
+        if (!user.IsValid)
+        {
+            return BadRequest(new ResultViewModel<List<Notification>>(user.Notifications.ToList()));
+        }
+
+        try
+        {
+            context.Users.Update(user);
+            await context.SaveChangesAsync();
+
+            return Ok(
+                new ResultViewModel<dynamic>(
+                    new
+                    {
+                        username = user.Username,
+                        nome = user.Nome,
+                        email = user.Email?.Address,
+                        cpf = user.CPF?.Numero
+                    }
+                    )
+                );
+        }
+        catch (DbUpdateException ex)
+        {
+            if (ex.InnerException != null && ex.InnerException.Message.ToLower().Contains("ix_user_email"))
+            {
+                return StatusCode(500, new ResultViewModel<string>($"01x07 - o e-mail '{user.Email?.Address}' já está em uso"));
+            }
+
+            if (ex.InnerException != null && ex.InnerException.Message.ToLower().Contains("ix_user_cpf"))
+            {
+                return StatusCode(500, new ResultViewModel<string>($"01x08 - o CPF '{user.CPF?.Numero}' já está em uso"));
+            }
+
+            return StatusCode(500, new ResultViewModel<string>("01x09 - Erro ao atualizar o usuário"));
+        }
+        catch
+        {
+            return StatusCode(500, new ResultViewModel<string>("01x10 - Falha interna no servidor"));
         }
     }
 

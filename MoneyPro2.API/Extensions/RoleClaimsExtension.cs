@@ -30,8 +30,6 @@ public static class RoleClaimsExtension
 
     public static int GetUserId(this ClaimsPrincipal user)
     {
-        //const string _primarysid = "primarysid";
-
         const string _userid = "userid";
         if (user != null && user.HasClaim(c => c.Type.ToLower().EndsWith(_userid)))
         {
