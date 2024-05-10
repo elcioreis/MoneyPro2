@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "c31bdc8d-f7e6-4831-9ee4-913970c73f3a",
+		"name": "MoneyPro2.API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15533135",
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-c31bdc8d-f7e6-4831-9ee4-913970c73f3a?action=share&source=collection_link&creator=15533135"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "v1/users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"luiz\",\r\n    \"nome\": \"Luiz da Silva\",\r\n    \"email\": \"luiz.silva@gmail.com\",\r\n    \"cpf\": \"509.254.178-40\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBaseUrl}}/v1/users",
+							"host": [
+								"{{localBaseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/changepassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaantiga\":\"XYZxyz123!@#\",\r\n    \"senhanova\": \"ABCabc123!@#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBaseUrl}}/v1/changepassword",
+							"host": [
+								"{{localBaseUrl}}"
+							],
+							"path": [
+								"v1",
+								"changepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Luis da Silva\",\r\n  \"email\": \"luis.silva@outlook.com\",\r\n  \"cpf\": \"50925417840\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBaseUrl}}/v1/users",
+							"host": [
+								"{{localBaseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"luiz\",\r\n    \"senha\":\"ABCabc123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{localBaseUrl}}/v1/login",
+					"host": [
+						"{{localBaseUrl}}"
+					],
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
