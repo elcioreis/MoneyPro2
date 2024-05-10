@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
+using MoneyPro2.API.Services;
 using MoneyPro2.API.ViewModels;
 using MoneyPro2.API.ViewModels.Users;
 using MoneyPro2.Domain.Entities;
@@ -17,6 +18,7 @@ public class UserController : ControllerBase
     [HttpPost("v1/users/")]
     public async Task<IActionResult> NewUserAsync(
         [FromBody] RegisterUserViewModel model,
+        [FromServices] EmailService emailService,
         [FromServices] MoneyPro2DataContext context
     )
     {
@@ -34,6 +36,12 @@ public class UserController : ControllerBase
         {
             await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
+
+            emailService.Send(
+                user.Nome,
+                user.Email.Address,
+                "Bem vindo ao MoneyPro2.",
+                "Confirme esse e-mail para validar seu endereço.");
 
             return Ok(
                 new ResultViewModel<dynamic>(

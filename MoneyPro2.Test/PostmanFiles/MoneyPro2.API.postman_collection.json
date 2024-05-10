@@ -73,6 +73,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/v1/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Luis da Silva\",\r\n  \"email\": \"luis.silva@outlook.com\",\r\n  \"cpf\": \"50925417840\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBaseUrl}}/v1/users",
+							"host": [
+								"{{localBaseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

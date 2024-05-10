@@ -40,6 +40,10 @@ void LoadConfiguration(WebApplicationBuilder builder)
 #pragma warning disable CS8601 // Desligando possivel atribuicao de referencia nula.
     Configuration.JwtKey = builder.Configuration.GetValue<string>("JwtKey");
 #pragma warning restore CS8601 // Religando possivel atribuicao de referencia nula.
+
+    var smtp = new Configuration.SmtpConfiguration();
+    builder.Configuration.GetSection("Smtp").Bind(smtp);
+    Configuration.Smtp = smtp;
 }
 
 void ConfigureAuthentication(WebApplicationBuilder builder)
@@ -69,4 +73,5 @@ void ConfigureServices(WebApplicationBuilder builder)
         options.UseSqlServer(connectionString);
     });
     builder.Services.AddTransient<TokenService>();
+    builder.Services.AddTransient<EmailService>();
 }
